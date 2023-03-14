@@ -9,21 +9,17 @@ function Search({ content, error }) {
         <p className="text-xl md:text-3xl font-bold text-[#d4d4dc] py-8: ml-1">
           Searches Result
         </p>
-        <div
-          className={
-            content === ""
-              ? "text-center font-bold"
-              : "grid md:grid-cols-6 grid-cols-2 gap-3 md:gap-5  mx-2"
-          }
-        >
-          {error ? (
-            <p className="text-red-400 px-4 w-full my-20 flex justify-center items-center md:text-xl">
-              <ImWarning size={30} className="mx-4" /> {error}
-            </p>
-          ) : (
-            content.map((movie) => <MovieCard movie={movie} key={movie.id} />)
-          )}
-        </div>
+        {error ? (
+          <p className="text-red-400 px-4 w-full my-20 flex justify-center items-center md:text-xl">
+            <ImWarning size={30} className="mx-4" /> {error}
+          </p>
+        ) : (
+          <div className="grid md:grid-cols-6 grid-cols-2 gap-3 md:gap-5  mx-2">
+            {content.map((movie) => (
+              <MovieCard movie={movie} key={movie.id} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
