@@ -17,6 +17,7 @@ function App() {
   const [searchText, setSeachText] = useState("");
   const [movieType, setMovieType] = useState(0);
   const [error, setError] = useState("");
+  const [error2, setError2] = useState("");
   const [content, setContent] = useState([]);
 
   const handleType = (e) => {
@@ -25,13 +26,16 @@ function App() {
   };
   const handleSearch = async () => {
     try {
-      if (searchText && movieType) {
+      if (searchText) {
         const { data } = await axios.get(
           `https://api.themoviedb.org/3/search/${
             movieType ? "tv" : "movie"
           }?api_key=b438eb3479c6e4729b05c73cbe88e602&language=en-US&query=${searchText}&page=${1}&include_adult=false`
         );
         setContent(data.results);
+        if (data.results.length === 0) {
+          setError2("Not Found ");
+        }
       } else {
         setError("Please Enter movie title and select a type");
       }
@@ -39,12 +43,14 @@ function App() {
       setError(error);
     }
   };
+
   return (
     <div className="container mx-auto text-[#d4d4dc] px-4 md:px-4">
       <Navbar
         handleSearch={handleSearch}
         setSeachText={setSeachText}
         handleType={handleType}
+        movieType={movieType}
       />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -53,7 +59,7 @@ function App() {
         <Route path="/tv-series" element={<TVSeries />} />
         <Route
           path="/search"
-          element={<Search content={content} error={error} />}
+          element={<Search content={content} error={error} error2={error2} />}
         />
         <Route path="/movie/:id" element={<MovieDetails />} />
       </Routes>

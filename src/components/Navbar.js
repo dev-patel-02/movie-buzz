@@ -81,7 +81,6 @@ function Navbar({ handleSearch, movieType, handleType, setSeachText }) {
                 value={movieType}
                 className=" bg-[#1d1e22]  outline-none block  px-4 placeholder:text-[#feda6a]"
               >
-                <option value="">Select</option>
                 <option value={0}>Movie</option>
                 <option value={1}>TV Series</option>
               </select>

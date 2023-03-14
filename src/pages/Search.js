@@ -2,13 +2,20 @@ import React from "react";
 import MovieCard from "../components/MovieCard";
 import { ImWarning } from "react-icons/im";
 
-function Search({ content, error }) {
+function Search({ content, error, error2 }) {
   return (
     <div className="h-screen">
       <div>
         <p className="text-xl md:text-3xl font-bold text-[#d4d4dc] py-8: ml-1">
           Searches Result
         </p>
+        {content.length === 0 ? (
+          <p className="text-red-400 px-4 w-full my-20 flex justify-center items-center md:text-xl">
+            {error2}
+          </p>
+        ) : (
+          ""
+        )}
         {error ? (
           <p className="text-red-400 px-4 w-full my-20 flex justify-center items-center md:text-xl">
             <ImWarning size={30} className="mx-4" /> {error}
