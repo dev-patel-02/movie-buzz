@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import ReactDOM from "react-dom/client";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -11,13 +10,19 @@ import TVSeries from "./pages/TVSeries";
 import Footer from "./components/Footer";
 import Search from "./pages/Search";
 import axios from "axios";
+// import ReactDOM from "react-dom/client";
 // import { axe } from "@axe-core/react";
 
 function App() {
   const [searchText, setSeachText] = useState("");
-  const [movieType, setMovieType] = useState("");
+  const [movieType, setMovieType] = useState(0);
   const [error, setError] = useState("");
   const [content, setContent] = useState([]);
+
+  const handleType = (e) => {
+    const getType = e.target.value;
+    setMovieType(getType);
+  };
   const handleSearch = async () => {
     try {
       if (searchText && movieType) {
@@ -39,7 +44,7 @@ function App() {
       <Navbar
         handleSearch={handleSearch}
         setSeachText={setSeachText}
-        setMovieType={setMovieType}
+        handleType={handleType}
       />
       <Routes>
         <Route path="/" element={<Home />} />

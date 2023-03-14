@@ -12,7 +12,7 @@ function MovieCard({ movie }) {
   return (
     <div
       onClick={() => navigateToDetails(movie.id)}
-      className="relative my-1 hover:border-4 rounded-md hover:border-[#feda6a] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+      className="relative my-1 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
     >
       <img
         src={movie.poster_path ? img_path + movie.poster_path : noImage}

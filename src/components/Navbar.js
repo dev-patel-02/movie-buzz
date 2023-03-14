@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { ImSearch } from "react-icons/im";
-function Navbar({ handleSearch, setMovieType, setSeachText }) {
+function Navbar({ handleSearch, movieType, handleType, setSeachText }) {
   return (
     <div className="navbar text-[#feda6a] my-4 border-b-2 border-b-[rgb(212,212,220)]">
       <div className="navbar-start">
@@ -73,18 +73,17 @@ function Navbar({ handleSearch, setMovieType, setSeachText }) {
               <input
                 type="text"
                 placeholder="Search..."
-                className="py-2 bg-[#1d1e22] outline-none placeholder:text-[#feda6a] block"
+                className="py-2 bg-[#1d1e22] outline-none placeholder:text-[#feda6a] block text-lg"
                 onChange={(e) => setSeachText(e.target.value)}
               />
               <select
-                onChange={(e) => setMovieType(e.target.value)}
+                onChange={(e) => handleType(e)}
+                value={movieType}
                 className=" bg-[#1d1e22]  outline-none block  px-4 placeholder:text-[#feda6a]"
               >
-                <option defaultValue required>
-                  Type
-                </option>
-                <option>movie</option>
-                <option>tv</option>
+                <option value="">Select</option>
+                <option value={0}>Movie</option>
+                <option value={1}>TV Series</option>
               </select>
               <button onClick={handleSearch} id="search" aria-label="Search">
                 <ImSearch size={24} className="mx-2" />

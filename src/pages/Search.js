@@ -1,8 +1,6 @@
 import React from "react";
 import MovieCard from "../components/MovieCard";
 import { ImWarning } from "react-icons/im";
-import ReactDOM from "react-dom/client";
-import { axe } from "@axe-core/react";
 
 function Search({ content, error }) {
   return (
@@ -13,7 +11,7 @@ function Search({ content, error }) {
         </p>
         <div
           className={
-            content.length === 0
+            content === ""
               ? "text-center font-bold"
               : "grid md:grid-cols-6 grid-cols-2 gap-3 md:gap-5  mx-2"
           }
@@ -32,9 +30,3 @@ function Search({ content, error }) {
 }
 
 export default Search;
-
-
-if (process.env.NODE_ENV !== "production") {
-  const axe = require("@axe-core/react");
-  axe(React, ReactDOM, 1000);
-}
