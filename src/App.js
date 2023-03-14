@@ -9,7 +9,7 @@ import Trending from "./pages/Trending";
 import Movies from "./pages/Movies";
 import TVSeries from "./pages/TVSeries";
 import Footer from "./components/Footer";
-import Search from "./components/Search";
+import Search from "./pages/Search";
 import axios from "axios";
 // import { axe } from "@axe-core/react";
 
@@ -33,10 +33,9 @@ function App() {
     } catch (error) {
       setError(error);
     }
-    
   };
   return (
-    <div className="container mx-auto text-[#d4d4dc] px-4 md:px-0">
+    <div className="container mx-auto text-[#d4d4dc] px-4 md:px-4">
       <Navbar
         handleSearch={handleSearch}
         setSeachText={setSeachText}
@@ -47,7 +46,10 @@ function App() {
         <Route path="/trending" element={<Trending />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/tv-series" element={<TVSeries />} />
-        <Route path="/search" element={<Search content={content}  error={error}/>} />
+        <Route
+          path="/search"
+          element={<Search content={content} error={error} />}
+        />
         <Route path="/movie/:id" element={<MovieDetails />} />
       </Routes>
       <Footer />

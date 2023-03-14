@@ -4,7 +4,6 @@ import Pagination from "../components/Pagination";
 
 function Movies() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(18);
 
   const [trending, setTrending] = useState([]);
   const [numOfPages, setNumOfPages] = useState();
@@ -18,7 +17,7 @@ function Movies() {
         setTrending(data.results);
         setNumOfPages(data.total_pages);
       });
-  }, [currentPage]);
+  }, [currentPage,url]);
 
   return (
     <div className="py-6">
@@ -35,7 +34,6 @@ function Movies() {
       <div className="flex justify-center items-center">
         <Pagination
           totalPages={numOfPages}
-          postsPerPage={postsPerPage}
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />

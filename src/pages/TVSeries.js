@@ -4,7 +4,6 @@ import Pagination from "../components/Pagination";
 
 function TVSeries() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(18);
 
   const [trending, setTrending] = useState([]);
   const [numOfPages, setNumOfPages] = useState();
@@ -18,12 +17,12 @@ function TVSeries() {
         setTrending(data.results);
         setNumOfPages(data.total_pages);
       });
-  }, [currentPage]);
+  }, [currentPage,url]);
   return (
     <div className="py-6">
       <div>
         <p className="text-xl md:text-3xl font-bold text-center text-[#d4d4dc] py-2 mb-10 ml-1 uppercase">
-          EXPLORE  Tv  Series
+          EXPLORE Tv Series
         </p>
         <div className="grid md:grid-cols-6 grid-cols-2 gap-3 md:gap-5  mx-2">
           {trending
@@ -34,7 +33,6 @@ function TVSeries() {
       <div className="flex justify-center items-center">
         <Pagination
           totalPages={numOfPages}
-          postsPerPage={postsPerPage}
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />

@@ -2,12 +2,11 @@ import React from "react";
 
 const Pagination = ({
   totalPages,
-  postsPerPage,
   setCurrentPage,
   currentPage,
 }) => {
   let pages = [];
-  for (let i = 1; i <= Math.ceil(totalPages / postsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalPages / 18); i++) {
     pages.push(i);
   }
   return (

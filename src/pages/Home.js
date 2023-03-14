@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import MovieCard from "../components/MovieCard";
 import AOS from "aos";
-import "aos/dist/aos.css"; 
+import "aos/dist/aos.css";
 AOS.init();
 
 function Home() {
   const [showMore, setShowMore] = useState(12);
 
-  let api_key = "&api_key=b438eb3479c6e4729b05c73cbe88e602";
+  let api_key = `&api_key=b438eb3479c6e4729b05c73cbe88e602`;
   let base_url = "https://api.themoviedb.org/3";
 
   const popularMovieUrl =
@@ -61,7 +61,7 @@ function Home() {
         }
       })
       .catch((error) => console.log("error", error));
-  }, [base_url]);
+  }, [base_url,comediesMovieUrl, dramaMovieUrl, kidsMovieUrl, popularMovieUrl, theatresMovieUrl]);
 
   const loadMore = () => {
     setShowMore(showMore + showMore);

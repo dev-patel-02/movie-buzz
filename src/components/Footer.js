@@ -16,7 +16,7 @@ function Footer() {
         </div>
         <div className="flex justify-between px-20 md:px-0 pt-10">
           <div className="md:px-24">
-            <nav className="list-none mb-10 ">
+            <ul className="list-none mb-10 ">
               <li>
                 <Link to="/" className=" hover:text-gray-200">
                   Home
@@ -27,10 +27,10 @@ function Footer() {
                   Trending
                 </Link>
               </li>
-            </nav>
+            </ul>
           </div>
           <div className="px-4">
-            <nav className="list-none mb-10">
+            <ul className="list-none mb-10">
               <li>
                 <Link to="/movies" className=" hover:text-gray-200">
                   All Movies
@@ -41,7 +41,7 @@ function Footer() {
                   TV Show
                 </Link>
               </li>
-            </nav>
+            </ul>
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ function MovieDetails() {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setDetail(data));
-  }, [id]);
+  }, [id,url]);
   let img_path = "https://image.tmdb.org/t/p/w500";
   useEffect(() => {
     fetch(
@@ -51,7 +51,7 @@ function MovieDetails() {
                 <a
                   target="__blank"
                   href={`https://www.youtube.com/watch?v=${video}`}
-                  className="bg-red-500 text-white font-semibold px-4 py-1 rounded-md ml-8"
+                  className="bg-[#AD0000] text-white font-semibold px-4 py-1 rounded-md ml-8"
                   type=""
                 >
                   Watch the trailer

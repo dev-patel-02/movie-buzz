@@ -8,11 +8,10 @@ function Header() {
   const [upcomingMovies, setUpComingMovies] = useState([]);
   const [video, setVideo] = useState();
   const upComing = `https://api.themoviedb.org/3/movie/upcoming?api_key=b438eb3479c6e4729b05c73cbe88e602&language=en-US&page=1`;
-
   useEffect(() => {
     fetch(upComing)
       .then((res) => res.json())
-      .then((data) => setUpComingMovies(data.results));
+      .then((data) => setUpComingMovies(data?.results));
   }, [upComing]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,7 +41,7 @@ function Header() {
     )
       .then((res) => res.json())
       .then((data) => setVideo(data?.results[0]?.key));
-  }, []);
+  }, [currentIndex,upcomingMovies]);
   return (
     <div className="max-w-[1400px] h-[650px] w-full m-auto py-4 relative group hidden md:block pb-14">
       <div className="w-full h-full rounded-2xl bg-center bg-cover duration-500 relative flex justify-center items-center bg-[#2b2b2c]">
@@ -63,7 +62,7 @@ function Header() {
             <a
               target="__blank"
               href={`https://www.youtube.com/watch?v=${video}`}
-              className="bg-red-500 text-white font-semibold px-4 py-3 text-lg rounded-md flex justify-center items-center w-60"
+              className="bg-[#AD0000] text-white font-semibold px-4 py-3 text-lg rounded-md flex justify-center items-center w-60"
               type=""
             >
               <BsPlayCircle className="mr-2" size={24} /> Watch the trailer
@@ -74,7 +73,7 @@ function Header() {
               <img
                 src={`${img_path}${upcomingMovies[currentIndex]?.poster_path}`}
                 alt=""
-                className="rounded-lg"
+                className="rounded-lg h-[500px] w-[380px] object-cover"
               />
               <p className="bg-[#feda6a] rounded-md px-2 py-1 text-center absolute top-2 text-sm flex items-center font-semibold text-black">
                 <FaStar className="inline mx-2" size={18} />{" "}

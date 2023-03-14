@@ -4,7 +4,6 @@ import Pagination from "./../components/Pagination";
 
 function Trending() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(18);
 
   const [trending, setTrending] = useState([]);
   const [numOfPages, setNumOfPages] = useState();
@@ -18,7 +17,7 @@ function Trending() {
         setTrending(data.results);
         setNumOfPages(data.total_pages);
       });
-  }, [currentPage]);
+  }, [currentPage,url]);
 
   return (
     <div className="py-6">
@@ -32,14 +31,13 @@ function Trending() {
             .slice(0, 18)}
         </div>
       </div>
-     <div className="flex justify-center items-center">
-     <Pagination
-        totalPages={numOfPages}
-        postsPerPage={postsPerPage}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
-     </div>
+      <div className="flex justify-center items-center">
+        <Pagination
+          totalPages={numOfPages}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
+      </div>
     </div>
   );
 }

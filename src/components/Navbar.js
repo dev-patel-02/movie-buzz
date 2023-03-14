@@ -86,7 +86,7 @@ function Navbar({ handleSearch, setMovieType, setSeachText }) {
                 <option>movie</option>
                 <option>tv</option>
               </select>
-              <button onClick={handleSearch} type="">
+              <button onClick={handleSearch} id="search" aria-label="Search">
                 <ImSearch size={24} className="mx-2" />
               </button>
             </div>
