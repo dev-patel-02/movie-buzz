@@ -19,13 +19,13 @@ function Header() {
   const prevSlide = () => {
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide
-      ? upcomingMovies.length - 1
+      ? upcomingMovies?.length - 1
       : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
 
   const nextSlide = () => {
-    const isLastSlide = currentIndex === upcomingMovies.length - 1;
+    const isLastSlide = currentIndex === upcomingMovies?.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
@@ -41,7 +41,8 @@ function Header() {
     )
       .then((res) => res.json())
       .then((data) => setVideo(data?.results[0]?.key));
-  }, [currentIndex,upcomingMovies]);
+  }, [currentIndex, upcomingMovies]);
+
   return (
     <div className="max-w-[1400px] h-[650px] w-full m-auto py-4 relative group hidden md:block pb-14">
       <div className="w-full h-full rounded-2xl bg-center bg-cover duration-500 relative flex justify-center items-center bg-[#2b2b2c]">

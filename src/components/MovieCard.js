@@ -17,7 +17,7 @@ function MovieCard({ movie }) {
       <img
         src={movie.poster_path ? img_path + movie.poster_path : noImage}
         alt=""
-        className="rounded-lg h-[300px] w-[400px] object-cover"
+        className="rounded-lg h-[230px] md:h-[300px] w-[350px] md:w-[400px] object-cover"
       />
       <p className="bg-[#feda6a] rounded-md px-2 py-1 text-center absolute top-2 text-sm flex items-center font-semibold text-black">
         <FaStar className="inline mx-2" size={18} /> {movie.vote_average}
