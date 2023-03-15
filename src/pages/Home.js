@@ -3,32 +3,17 @@ import Header from "../components/Header";
 import MovieCard from "../components/MovieCard";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import {
+  popularMovieUrl,
+  comediesMovieUrl,
+  theatresMovieUrl,
+  kidsMovieUrl,
+  dramaMovieUrl,
+} from "../utilities/config";
+import { Link } from "react-router-dom";
 AOS.init();
 
 function Home() {
-  const [showMore, setShowMore] = useState(12);
-
-  let api_key = `&api_key=b438eb3479c6e4729b05c73cbe88e602`;
-  let base_url = "https://api.themoviedb.org/3";
-
-  const popularMovieUrl =
-    base_url + "/discover/movie?sort_by=popularity.desc" + api_key;
-  const comediesMovieUrl =
-    base_url +
-    "/discover/movie?with_genres=35&with_cast=23659&sort_by=revenue.desc" +
-    api_key;
-  const theatresMovieUrl =
-    base_url +
-    "/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22" +
-    api_key;
-  const kidsMovieUrl =
-    base_url +
-    "/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc" +
-    api_key;
-  const dramaMovieUrl =
-    base_url +
-    "/discover/movie?with_genres=18&primary_release_year=2014" +
-    api_key;
   const [popularMovie, setPopularMovie] = useState([]);
   const [comedieMovie, setComedieMovie] = useState([]);
   const [theatresMovie, setTheatresMovie] = useState([]);
@@ -61,11 +46,8 @@ function Home() {
         }
       })
       .catch((error) => console.log("error", error));
-  }, [base_url,comediesMovieUrl, dramaMovieUrl, kidsMovieUrl, popularMovieUrl, theatresMovieUrl]);
+  }, []);
 
-  const loadMore = () => {
-    setShowMore(showMore + showMore);
-  };
   return (
     <div className="pb-20 pt-4">
       <Header />
@@ -74,24 +56,17 @@ function Home() {
           Most Popular Movies
         </p>
         <div className="grid md:grid-cols-6 grid-cols-2 gap-3 md:gap-5  mx-2">
-          {popularMovie.length === 0 ? (
-            <p>Not Found</p>
-          ) : (
-            popularMovie
-              .slice(0, showMore)
-              .map((movie) => <MovieCard movie={movie} key={movie.id} />)
-          )}
+          {popularMovie.slice(0, 12).map((movie) => (
+            <MovieCard movie={movie} key={movie.id} />
+          ))}
         </div>
         <div className="flex justify-end py-6">
-          {showMore && (
-            <button
-              onClick={loadMore}
-              className="font-bold text-xl border-b-2 border-b-[#feda6a] "
-              type=""
-            >
-              Load More...
-            </button>
-          )}
+          <Link to="/movies"
+            className="mr-4 font-bold text-xl border-b-2 border-b-[#feda6a] "
+            type=""
+          >
+            View More...
+          </Link>
         </div>
       </div>
       <div data-aos="zoom-in" data-aos-duration="3000">
@@ -99,27 +74,21 @@ function Home() {
           Most Comedie Movies
         </p>
         <div className="grid md:grid-cols-6 grid-cols-2 gap-3 md:gap-5  mx-2">
-          {comedieMovie.length === 0 ? (
-            <p>Not Found</p>
-          ) : (
-            comedieMovie
-              .slice(0, showMore)
-              .map((movie) => <MovieCard movie={movie} key={movie.id} />)
-          )}
+          {comedieMovie.slice(0, 12).map((movie) => (
+            <MovieCard movie={movie} key={movie.id} />
+          ))}
         </div>
         <div className="flex justify-end py-6">
-          {showMore && (
-            <button
-              onClick={loadMore}
-              className="font-bold text-xl border-b-2 border-b-[#feda6a] "
-              type=""
-            >
-              Load More...
-            </button>
-          )}
+          <Link
+            to="/movies"
+            className="mr-4 font-bold text-xl border-b-2 border-b-[#feda6a] "
+            type=""
+          >
+            View More...
+          </Link>
         </div>
       </div>
-      <div data-aos="zoom-in-up" data-aos-duration="2000">
+      <div data-aos="zoom-in" data-aos-duration="3000">
         <p className="text-xl md:text-3xl font-bold text-[#d4d4dc] py-4 ml-1 font-patua">
           Most Theatres Movies
         </p>
@@ -128,23 +97,21 @@ function Home() {
             <p>Not Found</p>
           ) : (
             theatresMovie
-              .slice(0, showMore)
+              .slice(0, 12)
               .map((movie) => <MovieCard movie={movie} key={movie.id} />)
           )}
         </div>
         <div className="flex justify-end py-6">
-          {showMore && (
-            <button
-              onClick={loadMore}
-              className="font-bold text-xl border-b-2 border-b-[#feda6a] "
-              type=""
-            >
-              Load More...
-            </button>
-          )}
+          <Link
+            to="/movies"
+            className="mr-4 font-bold text-xl border-b-2 border-b-[#feda6a] "
+            type=""
+          >
+            View More...
+          </Link>
         </div>
       </div>
-      <div data-aos="zoom-in-left" data-aos-duration="2000">
+      <div data-aos="zoom-in" data-aos-duration="3000">
         <p className="text-xl md:text-3xl font-bold text-[#d4d4dc] py-4 ml-1 font-patua">
           Most Kids Movies
         </p>
@@ -153,23 +120,21 @@ function Home() {
             <p>Not Found</p>
           ) : (
             kidsMovie
-              .slice(0, showMore)
+              .slice(0, 12)
               .map((movie) => <MovieCard movie={movie} key={movie.id} />)
           )}
         </div>
         <div className="flex justify-end py-6">
-          {showMore && (
-            <button
-              onClick={loadMore}
-              className="font-bold text-xl border-b-2 border-b-[#feda6a] "
-              type=""
-            >
-              Load More...
-            </button>
-          )}
+          <Link
+            to="/movies"
+            className="mr-4 font-bold text-xl border-b-2 border-b-[#feda6a] "
+            type=""
+          >
+            View More...
+          </Link>
         </div>
       </div>
-      <div data-aos="zoom-in-right" data-aos-duration="2000">
+      <div data-aos="zoom-in" data-aos-duration="3000">
         <p className="text-xl md:text-3xl font-bold text-[#d4d4dc] py-4 ml-1 font-patua">
           Most Drama Movies
         </p>
@@ -178,20 +143,18 @@ function Home() {
             <p>Not Found</p>
           ) : (
             dramaMovie
-              .slice(0, showMore)
+              .slice(0, 12)
               .map((movie) => <MovieCard movie={movie} key={movie.id} />)
           )}
         </div>
         <div className="flex justify-end py-6">
-          {showMore && (
-            <button
-              onClick={loadMore}
-              className="font-bold text-xl border-b-2 border-b-[#feda6a] "
-              type=""
-            >
-              Load More...
-            </button>
-          )}
+          <Link
+            to="/movies"
+            className="mr-4 font-bold text-xl border-b-2 border-b-[#feda6a] "
+            type=""
+          >
+            View More...
+          </Link>
         </div>
       </div>
     </div>

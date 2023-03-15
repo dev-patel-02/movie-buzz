@@ -10,8 +10,7 @@ import TVSeries from "./pages/TVSeries";
 import Footer from "./components/Footer";
 import Search from "./pages/Search";
 import axios from "axios";
-// import ReactDOM from "react-dom/client";
-// import { axe } from "@axe-core/react";
+
 
 function App() {
   const [searchText, setSeachText] = useState("");
@@ -69,7 +68,3 @@ function App() {
 }
 
 export default App;
-// if (process.env.NODE_ENV !== "production") {
-//   const axe = require("@axe-core/react");
-//   axe(React, ReactDOM, 1000);
-// }

@@ -3,11 +3,12 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 import { FaStar } from "react-icons/fa";
 import { BsPlayCircle } from "react-icons/bs";
+import apiConfig from './../utilities/apiConfig';
 
 function Header() {
   const [upcomingMovies, setUpComingMovies] = useState([]);
   const [video, setVideo] = useState();
-  const upComing = `https://api.themoviedb.org/3/movie/upcoming?api_key=b438eb3479c6e4729b05c73cbe88e602&language=en-US&page=1`;
+  const upComing = `${apiConfig.baseUrl}/movie/upcoming?api_key=${apiConfig.apiKey}&language=en-US&page=1`;
   useEffect(() => {
     fetch(upComing)
       .then((res) => res.json())
@@ -34,10 +35,9 @@ function Header() {
     setCurrentIndex(slideIndex);
     window.scroll(0, 0);
   };
-  let img_path = "https://image.tmdb.org/t/p/w300";
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/movie/${upcomingMovies[currentIndex]?.id}/videos?api_key=b438eb3479c6e4729b05c73cbe88e602&language=en-US`
+      `${apiConfig.baseUrl}/movie/${upcomingMovies[currentIndex]?.id}/videos?api_key=${apiConfig.apiKey}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => setVideo(data?.results[0]?.key));
@@ -72,7 +72,7 @@ function Header() {
           <div className="mr-36 shadow-[#feda6a] shadow-2xl">
             <div className="relative my-1 ">
               <img
-                src={`${img_path}${upcomingMovies[currentIndex]?.poster_path}`}
+                src={`${apiConfig.imgW500}${upcomingMovies[currentIndex]?.poster_path}`}
                 alt=""
                 className="rounded-lg h-[500px] w-[380px] object-cover"
               />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "../components/MovieCard";
+import apiConfig from "../utilities/apiConfig";
 import Pagination from "./../components/Pagination";
 
 function Trending() {
@@ -8,7 +9,7 @@ function Trending() {
   const [trending, setTrending] = useState([]);
   const [numOfPages, setNumOfPages] = useState();
 
-  const url = `https://api.themoviedb.org/3/trending/all/day?api_key=b438eb3479c6e4729b05c73cbe88e602&page=${currentPage}`;
+  const url = `${apiConfig.baseUrl}/trending/all/day?api_key=${apiConfig.apiKey}&page=${currentPage}`;
   useEffect(() => {
     window.scroll(0, 0);
     fetch(url)

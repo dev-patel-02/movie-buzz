@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "../components/MovieCard";
 import Pagination from "../components/Pagination";
+import apiConfig from './../utilities/apiConfig';
 
 function Movies() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -8,7 +9,7 @@ function Movies() {
   const [trending, setTrending] = useState([]);
   const [numOfPages, setNumOfPages] = useState();
 
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=b438eb3479c6e4729b05c73cbe88e602&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${currentPage}`;
+  const url = `${apiConfig.baseUrl}/discover/movie?api_key=${apiConfig.apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${currentPage}`;
   useEffect(() => {
     window.scroll(0, 0);
     fetch(url)

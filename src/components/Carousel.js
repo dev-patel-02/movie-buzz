@@ -3,15 +3,15 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import noImage from "../assets/images/noImage.png";
 import "./Carousel.css";
+import apiConfig from './../utilities/apiConfig';
 
 const handleDragStart = (e) => e.preventDefault();
-let img_path = "https://image.tmdb.org/t/p/w300";
 const Gallery = ({ id, media_type }) => {
   const [credits, setCredits] = useState([]);
   const items = credits?.map((c) => (
     <div className="carouselItem">
       <img
-        src={c?.profile_path ? `${img_path}/${c?.profile_path}` : noImage}
+        src={c?.profile_path ? `${apiConfig.imgW500}/${c?.profile_path}` : noImage}
         alt={c?.name}
         onDragStart={handleDragStart}
         className="carouselItem__img "

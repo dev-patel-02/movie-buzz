@@ -3,22 +3,23 @@ import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import Carousel from "../components/Carousel";
 import noImage from "../assets/images/noImage.png";
+import apiConfig from "../utilities/apiConfig";
 
 function MovieDetails() {
   const [detail, setDetail] = useState();
   const [video, setVideo] = useState();
   const media_type = "movie";
   const { id } = useParams();
-  const url = `https://api.themoviedb.org/3/movie/${id}?api_key=b438eb3479c6e4729b05c73cbe88e602&language=en-US`;
+  const url = `${apiConfig.baseUrl}/movie/${id}?api_key=${apiConfig.apiKey}&language=en-US`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setDetail(data));
-  }, [id,url]);
+  }, [id, url]);
   let img_path = "https://image.tmdb.org/t/p/w500";
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=b438eb3479c6e4729b05c73cbe88e602&language=en-US`
+      `${apiConfig.baseUrl}/movie/${id}/videos?api_key=${apiConfig.apiKey}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => setVideo(data?.results[0]?.key));

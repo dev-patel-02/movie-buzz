@@ -2,20 +2,23 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import noImage from "../assets/images/noImage.png";
+import apiConfig from "./../utilities/apiConfig";
 
 function MovieCard({ movie }) {
   const navigate = useNavigate();
   const navigateToDetails = (id) => {
     navigate(`/movie/${id}`);
   };
-  let img_path = "https://image.tmdb.org/t/p/w500";
+
   return (
     <div
       onClick={() => navigateToDetails(movie.id)}
       className="relative my-1 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
     >
       <img
-        src={movie.poster_path ? img_path + movie.poster_path : noImage}
+        src={
+          movie.poster_path ? apiConfig.imgW500 + movie.poster_path : noImage
+        }
         alt=""
         className="rounded-lg h-[230px] md:h-[300px] w-[350px] md:w-[400px] object-cover"
       />
