@@ -11,7 +11,9 @@ function MovieDetails() {
   const media_type = "movie";
   const { id } = useParams();
   const url = `${apiConfig.baseUrl}/movie/${id}?api_key=${apiConfig.apiKey}&language=en-US`;
+  
   useEffect(() => {
+    window.scroll(0, 0);
     fetch(url)
       .then((res) => res.json())
       .then((data) => setDetail(data));
@@ -24,6 +26,7 @@ function MovieDetails() {
       .then((res) => res.json())
       .then((data) => setVideo(data?.results[0]?.key));
   }, [id]);
+
   return (
     <div>
       <section className=" body-font overflow-hidden">

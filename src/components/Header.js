@@ -3,8 +3,6 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 import { FaStar } from "react-icons/fa";
 import { BsPlayCircle } from "react-icons/bs";
-
-
 import apiConfig from './../utilities/apiConfig';
 
 function Header() {
@@ -38,13 +36,14 @@ function Header() {
     window.scroll(0, 0);
   };
   useEffect(() => {
+   if(upcomingMovies[currentIndex]?.id){
     fetch(
       `${apiConfig.baseUrl}/movie/${upcomingMovies[currentIndex]?.id}/videos?api_key=${apiConfig.apiKey}&language=en-US`
     )
       .then((res) => res.json())
       .then((data) => setVideo(data?.results[0]?.key));
+   }
   }, [currentIndex, upcomingMovies]);
-
   return (
     <div className="max-w-[1400px] h-[650px] w-full m-auto py-4 relative group hidden md:block pb-14">
       <div className="w-full h-full rounded-2xl bg-center bg-cover duration-500 relative flex justify-center items-center bg-[#2b2b2c]">
@@ -73,11 +72,11 @@ function Header() {
           </div>
           <div className="mr-36 shadow-[#feda6a] shadow-2xl">
             <div className="relative my-1 ">
-              <img
+             {upcomingMovies[currentIndex] && <img
                 src={`${apiConfig.imgW500}${upcomingMovies[currentIndex]?.poster_path}`}
                 alt=""
                 className="rounded-lg h-[500px] w-[380px] object-cover"
-              />
+              />}
               <p className="bg-[#feda6a] rounded-md px-2 py-1 text-center absolute top-2 text-sm flex items-center font-semibold text-black">
                 <FaStar className="inline mx-2" size={18} />{" "}
                 {upcomingMovies[currentIndex]?.vote_average}

@@ -2,13 +2,16 @@ import React from "react";
 import MovieCard from "../components/MovieCard";
 import { ImWarning } from "react-icons/im";
 
-function Search({ content, error, error2 }) {
+function Search({ content, error, error2, searchTextResult }) {
+  
   return (
-    <div className="h-screen">
+    <div className="min-h-screen pb-14">
       <div>
-        <p className="text-xl md:text-3xl font-bold text-[#d4d4dc] py-8: ml-1">
-          Searches Result
-        </p>
+        {searchTextResult && (
+          <p className="text-xl md:text-3xl font-bold text-[#d4d4dc] py-8 ml-1">
+            Search Result For - "{searchTextResult}"
+          </p>
+        )}
         {content.length === 0 ? (
           <p className="text-red-400 px-4 w-full my-20 flex justify-center items-center md:text-xl">
             {error2}

@@ -1,7 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { ImSearch } from "react-icons/im";
-function Navbar({ handleSearch, movieType, handleType, setSeachText }) {
+import axios from "axios";
+
+function Navbar({
+  movieType,
+  handleType,
+  setSearchTextResult,
+  setContent,
+  setError2,
+  setError,
+  navigate,
+}) {
+  const [searchText, setSearchText] = useState("");
+  const handleSearch = async () => {
+    try {
+      if (searchText) {
+        const { data } = await axios.get(
+          `https://api.themoviedb.org/3/search/${
+            movieType ? "tv" : "movie"
+          }?api_key=b438eb3479c6e4729b05c73cbe88e602&language=en-US&query=${searchText}&page=${1}&include_adult=false`
+        );
+        setContent(data.results);
+        if (data.results.length === 0) {
+          setError2("Not Found ");
+        }
+        navigate("/search");
+        setSearchTextResult(searchText);
+      } else {
+        setError("Please Enter movie title and select a type");
+      }
+    } catch (error) {
+      setError(error);
+    }
+    setSearchText("");
+  };
+
   return (
     <div className="navbar text-[#feda6a] my-4 border-b-2 border-b-[rgb(212,212,220)]">
       <div className="navbar-start">
@@ -65,16 +99,14 @@ function Navbar({ handleSearch, movieType, handleType, setSeachText }) {
           Movie Buzz
         </Link>
         <div>
-          <Link
-            to="/search"
-            className="form-control border border-[#feda6a] rounded-sm hidden  w-68 md:flex justify-between"
-          >
+          <div className="form-control border border-[#feda6a] rounded-sm hidden  w-68 md:flex justify-between">
             <div className="flex px-4 items-center">
               <input
                 type="text"
+                value={searchText}
                 placeholder="Search..."
                 className="py-2 bg-[#1d1e22] outline-none placeholder:text-[#feda6a] block text-lg"
-                onChange={(e) => setSeachText(e.target.value)}
+                onChange={(e) => setSearchText(e.target.value)}
               />
               <select
                 onChange={(e) => handleType(e)}
@@ -88,7 +120,7 @@ function Navbar({ handleSearch, movieType, handleType, setSeachText }) {
                 <ImSearch size={24} className="mx-2" />
               </button>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </div>

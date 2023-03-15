@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="text-[#feda6a] body-font ">
+    <footer className="text-[#feda6a] body-font">
       <div className="md:flex  justify-between">
         <div className="">
           <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
