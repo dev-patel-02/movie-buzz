@@ -11,10 +11,10 @@ function Footer() {
           </a>
           <p className="mt-2 text-sm md:text-lg text-[#d4d4dc] text-center md:text-left">
             Welcome. <br />
-            Millions of movies, TV shows and people to discover. Explore now.
+            Millions of movies, TV shows and people to discover.<br /> Explore now.
           </p>
         </div>
-        <div className="flex justify-between px-20 md:px-0 pt-10">
+        <div className="flex justify-between px-10 md:px-0 pt-10">
           <div className="md:px-24">
             <ul className="list-none mb-10 ">
               <li>

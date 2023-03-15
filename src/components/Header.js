@@ -3,6 +3,8 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 import { FaStar } from "react-icons/fa";
 import { BsPlayCircle } from "react-icons/bs";
+
+
 import apiConfig from './../utilities/apiConfig';
 
 function Header() {

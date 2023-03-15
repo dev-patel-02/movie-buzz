@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "../components/MovieCard";
 import Pagination from "../components/Pagination";
 import apiConfig from './../utilities/apiConfig';
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
+
 
 function TVSeries() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,6 +22,10 @@ function TVSeries() {
         setNumOfPages(data.total_pages);
       });
   }, [currentPage, url]);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   return (
     <div className="py-6">
       <div>
@@ -31,12 +38,33 @@ function TVSeries() {
             .slice(0, 18)}
         </div>
       </div>
-      <div className="flex justify-center items-center">
-        <Pagination
-          totalPages={numOfPages}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-        />
+      <div className="md:flex  justify-center py-14">
+        <div className="flex justify-center">
+          <button
+            className=" text-[#feda6a] rounded-lg bg-[#3b436d] mx-2 px-3 py-1 my-4 md:font-bold flex justify-center items-center"
+            disabled={currentPage === 1}
+            onClick={() => handlePageChange(currentPage - 1)}
+          >
+            <BsFillArrowLeftCircleFill className="mr-2" /> Previous
+          </button>
+        </div>
+        <div className="flex justify-center items-center">
+          <Pagination
+            totalPages={numOfPages}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
+        </div>
+        <div className="flex justify-center">
+          <button
+            className=" text-[#feda6a] rounded-lg bg-[#3b436d] mx-2 px-3 py-1 my-4 md:font-bold flex justify-center items-center"
+            disabled={currentPage === numOfPages}
+            onClick={() => handlePageChange(currentPage + 1)}
+          >
+            Next
+            <BsFillArrowRightCircleFill className="ml-2" />
+          </button>
+        </div>
       </div>
     </div>
   );
