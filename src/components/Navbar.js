@@ -36,6 +36,12 @@ function Navbar({
     setSearchText("");
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSearch(event);
+    }
+  };
+
   return (
     <div className="navbar text-[#feda6a] my-4 border-b-2 border-b-[rgb(212,212,220)]">
       <div className="navbar-start">
@@ -107,6 +113,7 @@ function Navbar({
                 placeholder="Search..."
                 className="py-2 bg-[#1d1e22] outline-none placeholder:text-[#feda6a] block text-lg"
                 onChange={(e) => setSearchText(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
               <select
                 onChange={(e) => handleType(e)}

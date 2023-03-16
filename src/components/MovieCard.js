@@ -13,7 +13,7 @@ function MovieCard({ movie }) {
   return (
     <div
       onClick={() => navigateToDetails(movie.id)}
-      className="relative my-1 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+      className="relative my-1 rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 cursor-pointer"
     >
       <img
         src={

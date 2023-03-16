@@ -3,7 +3,6 @@ import MovieCard from "../components/MovieCard";
 import { ImWarning } from "react-icons/im";
 
 function Search({ content, error, error2, searchTextResult }) {
-  
   return (
     <div className="min-h-screen pb-14">
       <div>
